@@ -1,0 +1,366 @@
+---
+---
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pavel Dikarev | Product Manager</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;family=Space+Grotesk:wght@500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-container": "#C0FF00",
+              "outline-variant": "#484847",
+              "on-primary": "#2d3c00",
+              "surface-dim": "#0e0e0e",
+              "on-tertiary-container": "#5e5400",
+              "on-tertiary": "#685c00",
+              "surface": "#0e0e0e",
+              "on-tertiary-fixed": "#4a4100",
+              "inverse-surface": "#fcf9f8",
+              "primary-fixed": "#C0FF00",
+              "secondary-dim": "#d8db4d",
+              "inverse-on-surface": "#565555",
+              "on-secondary-fixed": "#414200",
+              "background": "#0e0e0e",
+              "tertiary-container": "#fde74f",
+              "on-surface": "#ffffff",
+              "surface-container-low": "#131313",
+              "on-primary-container": "#2d3c00",
+              "error-container": "#b92902",
+              "on-background": "#ffffff",
+              "secondary": "#e7ea5a",
+              "surface-container-high": "#201f1f",
+              "tertiary-dim": "#eed942",
+              "on-primary-fixed": "#2d3c00",
+              "surface-container-lowest": "#000000",
+              "inverse-primary": "#4c6800",
+              "on-secondary": "#535500",
+              "tertiary": "#fff4c1",
+              "primary-dim": "#aadd00",
+              "tertiary-fixed": "#fde74f",
+              "secondary-fixed": "#e7ea5a",
+              "on-error-container": "#ffd2c8",
+              "on-tertiary-fixed-variant": "#695e00",
+              "surface-bright": "#2c2c2c",
+              "on-primary-fixed-variant": "#4c6800",
+              "on-error": "#450900",
+              "primary": "#C0FF00",
+              "on-secondary-fixed-variant": "#5d5f00",
+              "outline": "#767575",
+              "secondary-fixed-dim": "#d8db4d",
+              "surface-container": "#1a1919",
+              "secondary-container": "#606200",
+              "on-secondary-container": "#fcff74",
+              "surface-variant": "#262626",
+              "on-surface-variant": "#adaaaa",
+              "error-dim": "#d53d18",
+              "tertiary-fixed-dim": "#eed942",
+              "error": "#ff7351",
+              "surface-tint": "#C0FF00",
+              "surface-container-highest": "#262626"
+            },
+            fontFamily: {
+              headline: ["Inter"],
+              body: ["Inter"],
+              label: ["Space Grotesk"]
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "1rem",
+              full: "9999px"
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        vertical-align: middle;
+      }
+      .glass-nav {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .grid-bg {
+        background-image: radial-gradient(circle at 2px 2px, rgba(192, 255, 0, 0.05) 1px, transparent 0);
+        background-size: 40px 40px;
+      }
+      .asymmetric-gradient {
+        background: radial-gradient(circle at 80% 20%, rgba(192, 255, 0, 0.03) 0%, transparent 40%);
+      }
+    </style>
+  </head>
+  <body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+    <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/5">
+      <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+        <div class="text-xl font-black tracking-tighter text-primary">Pavel Dikarev</div>
+        <div class="hidden md:flex items-center space-x-8 font-['Inter'] font-semibold tracking-tight">
+          <a class="text-primary font-bold border-b-2 border-primary pb-1" href="#experience">Experience</a>
+          <a class="text-on-surface-variant hover:text-white transition-colors duration-200" href="#skills">Skills</a>
+          <a class="text-on-surface-variant hover:text-white transition-colors duration-200" href="#achievements">Achievements</a>
+          <a class="text-on-surface-variant hover:text-white transition-colors duration-200" href="#contact">Contact</a>
+        </div>
+        <button class="bg-primary text-on-primary px-5 py-2 rounded-lg font-bold text-sm hover:bg-primary-dim transition-all duration-300 ease-out active:scale-95">
+          Download CV
+        </button>
+      </div>
+    </nav>
+    <main class="relative pt-24 overflow-x-hidden">
+      <section class="relative min-h-[70vh] flex flex-col justify-center px-8 max-w-7xl mx-auto mb-20 grid-bg asymmetric-gradient">
+        <div class="space-y-8 max-w-4xl">
+          <div class="flex items-center gap-6 mb-4">
+            <div class="relative">
+              <div class="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
+              <img
+                alt="Pavel Dikarev profile"
+                class="relative z-10 w-24 h-24 object-cover rounded-2xl grayscale hover:grayscale-0 transition-all duration-500 border-2 border-primary/20"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuATYBlt5Z07BiMmVB2ONomUOUhBO_ZzeZofeGczipxd3uzHHxqgozhrNVUGXpcZTrn-zs840X9kgtGdT_8aZwZRfeGq11P7HKdsqiFfeVabcZjOKcj43N-G6CrcBko69P0qgJYPSkQBcbABKjXpVgExmnfdieodCj1_cXs8SimXtQltBe7zMpj0q0h8vjBS0ZmPZwT_epLss-3Opmme7G6nCuV3CYPrBt07cnPPJSW3ZHALaOPEHgo4yaMUdcnfbH0OyKCs2BgA733I"
+              />
+            </div>
+            <div class="inline-block px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/15">
+              <span class="font-label text-xs tracking-widest uppercase text-primary">Open for new challenges</span>
+            </div>
+          </div>
+          <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9]">Pavel Dikarev</h1>
+          <p class="text-2xl md:text-3xl font-semibold text-on-surface-variant max-w-2xl leading-tight">
+            Product Manager (Growth / E-commerce)
+          </p>
+          <h2 class="text-3xl md:text-5xl font-bold italic text-primary tracking-tight">“Building products that grow themselves”</h2>
+        </div>
+      </section>
+
+      <section class="px-8 max-w-7xl mx-auto py-20" id="achievements">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="md:col-span-2 bg-surface-container p-10 rounded-xl relative overflow-hidden group hover:bg-surface-container-high transition-colors duration-300">
+            <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+              <span class="material-symbols-outlined text-9xl">trending_up</span>
+            </div>
+            <div class="relative z-10">
+              <span class="font-label text-xs tracking-widest uppercase text-on-surface-variant mb-4 block">Core Impact</span>
+              <div class="text-7xl font-black text-primary mb-2">+25%</div>
+              <p class="text-xl font-semibold text-on-surface max-w-sm">Conversion rate optimization across the entire e-commerce funnel.</p>
+            </div>
+          </div>
+          <div class="bg-surface-container p-10 rounded-xl flex flex-col justify-between border-t border-outline-variant/15">
+            <div>
+              <span class="font-label text-xs tracking-widest uppercase text-on-surface-variant mb-4 block">Scale</span>
+              <div class="text-6xl font-black text-primary mb-2">1M+</div>
+            </div>
+            <p class="text-lg font-medium text-on-surface-variant">Active monthly users reached within 14 months of product launch.</p>
+          </div>
+          <div class="bg-surface-container p-10 rounded-xl flex flex-col justify-between">
+            <div class="text-5xl font-black text-primary mb-2">$12M</div>
+            <p class="text-lg font-medium text-on-surface-variant">Annual Recurring Revenue attributed to growth initiatives led by me.</p>
+          </div>
+          <div class="md:col-span-2 bg-surface-container p-10 rounded-xl flex items-center gap-12 border-t border-outline-variant/15">
+            <div class="flex-1">
+              <span class="font-label text-xs tracking-widest uppercase text-on-surface-variant mb-4 block">Product velocity</span>
+              <div class="text-5xl font-black text-on-surface mb-2">3.5x Faster</div>
+              <p class="text-lg font-medium text-on-surface-variant">Reduced time-to-market by restructuring cross-functional squads.</p>
+            </div>
+            <div class="hidden lg:block w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-8 max-w-7xl mx-auto py-20" id="experience">
+        <div class="flex flex-col md:flex-row gap-16">
+          <div class="md:w-1/3">
+            <h2 class="text-4xl font-black tracking-tighter mb-6 sticky top-32">Experience Track</h2>
+            <p class="text-on-surface-variant leading-relaxed">A history of high-velocity execution across retail tech and growth-stage startups.</p>
+          </div>
+          <div class="md:w-2/3 space-y-24 border-l-2 border-surface-variant pl-12 relative">
+            <div class="relative">
+              <div class="absolute -left-[55px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_rgba(192,255,0,0.5)]"></div>
+              <div class="mb-2">
+                <span class="font-label text-xs tracking-widest uppercase text-primary bg-primary/10 px-2 py-1 rounded">2021 — PRESENT</span>
+              </div>
+              <h3 class="text-3xl font-bold mb-1">Lead Growth Product Manager</h3>
+              <p class="text-lg font-medium text-on-surface-variant mb-6">Global Retail Corp</p>
+              <div class="space-y-4">
+                <div class="flex items-start gap-4 p-6 bg-surface-container-low rounded-lg border-t border-white/5">
+                  <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                  <div>
+                    <p class="text-on-surface font-semibold">Led a "Growth Strike Team" of 12 engineers and designers.</p>
+                    <p class="text-sm text-on-surface-variant">Implemented A/B testing framework that increased experiment velocity by 200%.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4 p-6 bg-surface-container-low rounded-lg border-t border-white/5">
+                  <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                  <div>
+                    <p class="text-on-surface font-semibold">Architected the referral engine 2.0.</p>
+                    <p class="text-sm text-on-surface-variant">Resulted in a 40% decrease in Customer Acquisition Cost (CAC) over 6 months.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="relative">
+              <div class="absolute -left-[55px] top-2 w-4 h-4 rounded-full bg-surface-variant border-4 border-surface"></div>
+              <div class="mb-2">
+                <span class="font-label text-xs tracking-widest uppercase text-on-surface-variant">2018 — 2021</span>
+              </div>
+              <h3 class="text-3xl font-bold mb-1">Product Manager</h3>
+              <p class="text-lg font-medium text-on-surface-variant mb-6">Marketly E-comm Platform</p>
+              <div class="space-y-4">
+                <div class="flex items-start gap-4 p-6 bg-surface-container-low rounded-lg border-t border-white/5">
+                  <span class="material-symbols-outlined text-outline mt-1">check_circle</span>
+                  <div>
+                    <p class="text-on-surface font-semibold">Owned the checkout and payments experience.</p>
+                    <p class="text-sm text-on-surface-variant">Integrated 5+ new payment methods, reducing cart abandonment by 15%.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-surface-container-low py-32 px-8 mt-20 border-y border-white/5" id="skills">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+              <h3 class="font-label text-xs tracking-widest uppercase text-primary mb-8">Product Strategy</h3>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">Product Discovery</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">Roadmap Prioritization</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">GTM Strategy</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">Market Research</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">User Interviewing</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-label text-xs tracking-widest uppercase text-primary mb-8">Growth &amp; Analytics</h3>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">A/B Testing</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">SQL / BigQuery</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">Amplitude / Mixpanel</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">Retention Loops</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">Funnel Optimization</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-label text-xs tracking-widest uppercase text-primary mb-8">Technical &amp; Tooling</h3>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">Jira / Linear</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">Figma / UX Design</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">API Documentation</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">Agile / Scrum</span>
+                <span class="px-4 py-2 bg-surface-container-high rounded-full text-sm font-medium hover:bg-primary hover:text-on-primary transition-all duration-300">Webhooks &amp; Integration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-8 max-w-7xl mx-auto py-32">
+        <div class="flex flex-col md:flex-row items-start gap-20">
+          <div class="w-full md:w-1/2 space-y-8">
+            <h2 class="text-4xl font-black tracking-tighter">Beyond the Product</h2>
+            <div class="space-y-6 text-on-surface-variant text-lg leading-relaxed">
+              <p>
+                I thrive at the intersection of psychology, data, and engineering. To me, a product isn't just a set of features; it's a series of behavioral incentives designed to solve real problems while driving business value.
+              </p>
+              <p>
+                I started my career as a data analyst, which instilled a deep respect for quantitative evidence. Today, I combine that analytical rigor with a high-velocity execution mindset—shipping fast, failing small, and scaling what works.
+              </p>
+            </div>
+            <div class="pt-4 flex gap-8 font-label text-xs tracking-widest uppercase">
+              <div class="flex flex-col">
+                <span class="text-primary mb-1">Location</span>
+                <span>London, UK / Remote</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-primary mb-1">Focus</span>
+                <span>B2C / Marketplaces</span>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 bg-surface-container p-8 rounded-2xl border border-white/5">
+            <p class="text-on-surface-variant text-lg leading-relaxed italic">
+              "When I’m not obsessing over churn rates, you’ll find me exploring brutalist architecture or reading about system design theories."
+            </p>
+            <div class="mt-6 flex items-center gap-4">
+              <div class="w-12 h-1 bg-primary rounded-full"></div>
+              <span class="font-label text-xs tracking-widest uppercase text-on-surface-variant">Interests</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-8 max-w-7xl mx-auto py-32" id="contact">
+        <div class="border-t border-primary/20 pt-20">
+          <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-16">Get in touch</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <a class="group block space-y-4" href="mailto:pavel@dikarev.pm">
+              <div class="w-12 h-12 rounded-xl bg-surface-container-high border border-white/5 flex items-center justify-center group-hover:border-primary/50 transition-colors">
+                <span class="material-symbols-outlined text-primary">mail</span>
+              </div>
+              <div>
+                <div class="text-xs font-label uppercase tracking-widest text-on-surface-variant mb-1">Email</div>
+                <div class="text-xl font-bold group-hover:text-primary transition-colors">pavel@dikarev.pm</div>
+              </div>
+            </a>
+            <a class="group block space-y-4" href="#">
+              <div class="w-12 h-12 rounded-xl bg-surface-container-high border border-white/5 flex items-center justify-center group-hover:border-primary/50 transition-colors">
+                <span class="material-symbols-outlined text-primary">share</span>
+              </div>
+              <div>
+                <div class="text-xs font-label uppercase tracking-widest text-on-surface-variant mb-1">LinkedIn</div>
+                <div class="text-xl font-bold group-hover:text-primary transition-colors">Pavel Dikarev</div>
+              </div>
+            </a>
+            <a class="group block space-y-4" href="https://t.me/pdikarev">
+              <div class="w-12 h-12 rounded-xl bg-surface-container-high border border-white/5 flex items-center justify-center group-hover:border-primary/50 transition-colors">
+                <span class="material-symbols-outlined text-primary">send</span>
+              </div>
+              <div>
+                <div class="text-xs font-label uppercase tracking-widest text-on-surface-variant mb-1">Telegram</div>
+                <div class="text-xl font-bold group-hover:text-primary transition-colors">@pdikarev</div>
+              </div>
+            </a>
+            <a class="group block space-y-4" href="tel:+1234567890">
+              <div class="w-12 h-12 rounded-xl bg-surface-container-high border border-white/5 flex items-center justify-center group-hover:border-primary/50 transition-colors">
+                <span class="material-symbols-outlined text-primary">call</span>
+              </div>
+              <div>
+                <div class="text-xs font-label uppercase tracking-widest text-on-surface-variant mb-1">Phone</div>
+                <div class="text-xl font-bold group-hover:text-primary transition-colors">+1 234 567 890</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="w-full py-20 px-8 bg-[#0a0a0a] border-t border-white/5">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="text-lg font-bold text-white">Pavel Dikarev</div>
+        <div class="flex gap-8 font-['Space_Grotesk'] uppercase tracking-widest text-xs">
+          <a class="text-on-surface-variant hover:text-primary transition-colors hover:translate-y-[-2px] duration-200" href="#">LinkedIn</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors hover:translate-y-[-2px] duration-200" href="#">Telegram</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors hover:translate-y-[-2px] duration-200" href="#">GitHub</a>
+        </div>
+        <div class="text-on-surface-variant font-['Space_Grotesk'] uppercase tracking-widest text-[10px]">
+          © 2024 Pavel Dikarev. Built for high-velocity.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
