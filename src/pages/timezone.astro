@@ -1,0 +1,497 @@
+---
+import '../styles/timezone.css'
+
+// 25 integer UTC bands: -12 to +12, each 38.4px wide at viewBox 960
+const BANDS = Array.from({ length: 25 }, (_, k) => ({
+  offset: k - 12,
+  x: k * 38.4,
+  w: 38.4,
+}))
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timezone Calculator</title>
+    <meta name="description" content="Find current time in any timezone. Auto-detects your timezone and lets you explore the world clock." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <script is:inline>
+      ;(function () {
+        var s = localStorage.getItem('resume-theme')
+        var p = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', s || p)
+      })()
+    </script>
+  </head>
+
+  <body>
+    <!-- ── Header ─────────────────────────────────────────── -->
+    <header class="tz-header">
+      <div class="tz-header-left">
+        <span class="tz-title">timezone calculator</span>
+        <span class="tz-user-info">
+          Your timezone: <span id="user-tz-name">–</span> &nbsp;·&nbsp;
+          <span class="tz-user-time" id="user-clock">–</span>
+        </span>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-moon">🌙</span>
+        <span class="icon-sun">☀️</span>
+      </button>
+    </header>
+
+    <!-- ── Main ───────────────────────────────────────────── -->
+    <main class="tz-main">
+
+      <!-- Mode toggle -->
+      <div class="mode-toggle" role="group" aria-label="View mode">
+        <button class="mode-btn active" id="btn-map" data-mode="map">Map</button>
+        <button class="mode-btn" id="btn-search" data-mode="search">Search</button>
+      </div>
+
+      <!-- ── MAP MODE ───────────────────────────────────────── -->
+      <div class="map-section" id="map-section">
+        <div class="map-wrapper" id="map-wrapper">
+          <!-- Inline SVG world map -->
+          <svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" class="world-map" role="application" aria-label="World timezone map">
+            <!-- Ocean -->
+            <rect class="ocean" width="960" height="480"/>
+
+            <!-- ── Continents ─────────────────────────────── -->
+            <!-- North America -->
+            <path class="land" d="M 26.7,50.7 L 106.7,53.3 213.3,40 333.3,40 333.3,114.7 298.7,120 280,146.7 266.7,173.3 248,197.3 258.7,218.7 274.7,218.7 280,213.3 240,197.3 213.3,186.7 186.7,178.7 168,154.7 149.3,112 106.7,80 40,58.7 Z"/>
+            <!-- Greenland -->
+            <path class="land" d="M 333.3,18.7 L 426.7,18.7 432,37.3 413.3,45.3 400,66.7 346.7,80 341.3,66.7 360,48 346.7,40 333.3,32 Z"/>
+            <!-- South America -->
+            <path class="land" d="M 266.7,208 L 320,200 346.7,226.7 386.7,253.3 386.7,386.7 306.7,386.7 280,373.3 266.7,333.3 272,261.3 266.7,240 Z"/>
+            <!-- Europe -->
+            <path class="land" d="M 453.3,50.7 L 554.7,48 560,53.3 554.7,66.7 546.7,93.3 538.7,106.7 520,120 501.3,122.7 493.3,125.3 466.7,144 453.3,144 426.7,146.7 413.3,141.3 453.3,122.7 458.7,101.3 466.7,85.3 493.3,74.7 466.7,66.7 Z"/>
+            <!-- Africa -->
+            <path class="land" d="M 432,200 L 440,226.7 453.3,253.3 506.7,333.3 573.3,333.3 592,280 613.3,208 592,208 586.7,226.7 573.3,200 560,186.7 546.7,141.3 506.7,141.3 480,200 Z"/>
+            <!-- Asia + Russia -->
+            <path class="land" d="M 546.7,48 L 640,45.3 746.7,40 853.3,42.7 933.3,48 960,58.7 960,120 861.3,120 853.3,146.7 826.7,160 800,173.3 754.7,237.3 733.3,226.7 693.3,218.7 680,218.7 653.3,181.3 640,181.3 613.3,208 594.7,213.3 573.3,200 560,186.7 560,141.3 560,106.7 573.3,93.3 573.3,48 Z"/>
+            <!-- Australia -->
+            <path class="land" d="M 781.3,298.7 L 821.3,280 840,272 853.3,285.3 880,306.7 890.7,320 888,341.3 866.7,354.7 826.7,333.3 786.7,333.3 781.3,314.7 Z"/>
+            <!-- Antarctica (partial strip) -->
+            <rect class="land" x="0" y="448" width="960" height="32" opacity="0.6"/>
+
+            <!-- ── Grid lines ──────────────────────────────── -->
+            <!-- Equator -->
+            <line class="grid-line" x1="0" y1="240" x2="960" y2="240"/>
+            <!-- Tropic of Cancer 23.5N → y = (90-23.5)*2.667 = 177 -->
+            <line class="grid-line" x1="0" y1="177" x2="960" y2="177" stroke-dasharray="4,4"/>
+            <!-- Tropic of Capricorn 23.5S → y = (90+23.5)*2.667 = 303 -->
+            <line class="grid-line" x1="0" y1="303" x2="960" y2="303" stroke-dasharray="4,4"/>
+
+            <!-- ── UTC offset labels at top ─────────────────── -->
+            {BANDS.map(b => (
+              <text
+                x={b.x + b.w / 2}
+                y="14"
+                text-anchor="middle"
+                font-family="Space Grotesk, sans-serif"
+                font-size="7"
+                fill="currentColor"
+                opacity="0.45"
+              >
+                {b.offset >= 0 ? `+${b.offset}` : b.offset}
+              </text>
+            ))}
+
+            <!-- ── Interactive timezone bands ─────────────── -->
+            {BANDS.map(b => (
+              <rect
+                class="tz-band"
+                x={b.x}
+                y="0"
+                width={b.w}
+                height="480"
+                data-offset={b.offset}
+                tabindex="0"
+                role="button"
+                aria-label={`UTC${b.offset >= 0 ? '+' : ''}${b.offset} timezone band`}
+              />
+            ))}
+          </svg>
+
+          <!-- HTML tooltip overlay -->
+          <div class="map-tooltip" id="map-tooltip">
+            <span class="map-tooltip-time" id="tooltip-time">00:00</span>
+            <span class="map-tooltip-label" id="tooltip-label">UTC+0</span>
+          </div>
+        </div>
+
+        <!-- Timezone list below map -->
+        <div class="tz-list-section">
+          <p class="tz-list-title" id="tz-list-title">Hover a band to explore timezones</p>
+          <div class="tz-list" id="tz-list"></div>
+        </div>
+      </div>
+
+      <!-- ── SEARCH MODE ─────────────────────────────────────── -->
+      <div class="search-section" id="search-section">
+        <div class="search-input-wrap">
+          <input
+            class="search-input"
+            id="search-input"
+            type="text"
+            placeholder="Type a city or timezone (e.g. Tokyo, Asia/Dubai, Pacific…)"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <p class="tz-list-title" id="search-list-title">All timezones</p>
+        <div class="tz-list search-results" id="search-list"></div>
+      </div>
+
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────────────── -->
+    <footer class="tz-footer">
+      build by pd and everything-claude-code in 10 minutes &nbsp;·&nbsp;
+      <a href="https://github.com/affaan-m/everything-claude-code?tab=readme-ov-file" target="_blank" rel="noopener noreferrer">
+        everything-claude-code
+      </a>
+    </footer>
+
+    <script is:inline>
+    ;(function () {
+      // ── Timezone data (inline for browser) ────────────────
+      var TZ_DATA = [
+        {id:'Etc/GMT+12',label:'Baker Island',region:'Pacific'},
+        {id:'Pacific/Pago_Pago',label:'American Samoa',region:'Pacific'},
+        {id:'Pacific/Niue',label:'Niue',region:'Pacific'},
+        {id:'Pacific/Honolulu',label:'Honolulu',region:'Pacific'},
+        {id:'Pacific/Tahiti',label:'Tahiti',region:'Pacific'},
+        {id:'Pacific/Rarotonga',label:'Rarotonga',region:'Pacific'},
+        {id:'Pacific/Marquesas',label:'Marquesas Islands',region:'Pacific'},
+        {id:'America/Anchorage',label:'Anchorage',region:'Americas'},
+        {id:'America/Juneau',label:'Juneau',region:'Americas'},
+        {id:'America/Los_Angeles',label:'Los Angeles',region:'Americas'},
+        {id:'America/Vancouver',label:'Vancouver',region:'Americas'},
+        {id:'America/Tijuana',label:'Tijuana',region:'Americas'},
+        {id:'America/Denver',label:'Denver',region:'Americas'},
+        {id:'America/Phoenix',label:'Phoenix',region:'Americas'},
+        {id:'America/Chicago',label:'Chicago',region:'Americas'},
+        {id:'America/Mexico_City',label:'Mexico City',region:'Americas'},
+        {id:'America/New_York',label:'New York',region:'Americas'},
+        {id:'America/Toronto',label:'Toronto',region:'Americas'},
+        {id:'America/Bogota',label:'Bogotá',region:'Americas'},
+        {id:'America/Lima',label:'Lima',region:'Americas'},
+        {id:'America/Halifax',label:'Halifax',region:'Americas'},
+        {id:'America/Caracas',label:'Caracas',region:'Americas'},
+        {id:'America/La_Paz',label:'La Paz',region:'Americas'},
+        {id:"America/St_Johns",label:"St. John's",region:'Americas'},
+        {id:'America/Sao_Paulo',label:'São Paulo',region:'Americas'},
+        {id:'America/Argentina/Buenos_Aires',label:'Buenos Aires',region:'Americas'},
+        {id:'America/Montevideo',label:'Montevideo',region:'Americas'},
+        {id:'Atlantic/Azores',label:'Azores',region:'Atlantic'},
+        {id:'Atlantic/Cape_Verde',label:'Cape Verde',region:'Africa'},
+        {id:'Europe/London',label:'London',region:'Europe'},
+        {id:'Atlantic/Reykjavik',label:'Reykjavik',region:'Atlantic'},
+        {id:'Africa/Abidjan',label:'Abidjan',region:'Africa'},
+        {id:'Africa/Accra',label:'Accra',region:'Africa'},
+        {id:'Europe/Paris',label:'Paris',region:'Europe'},
+        {id:'Europe/Berlin',label:'Berlin',region:'Europe'},
+        {id:'Europe/Rome',label:'Rome',region:'Europe'},
+        {id:'Europe/Madrid',label:'Madrid',region:'Europe'},
+        {id:'Africa/Lagos',label:'Lagos',region:'Africa'},
+        {id:'Europe/Athens',label:'Athens',region:'Europe'},
+        {id:'Europe/Helsinki',label:'Helsinki',region:'Europe'},
+        {id:'Africa/Cairo',label:'Cairo',region:'Africa'},
+        {id:'Africa/Johannesburg',label:'Johannesburg',region:'Africa'},
+        {id:'Asia/Jerusalem',label:'Jerusalem',region:'Asia'},
+        {id:'Europe/Moscow',label:'Moscow',region:'Europe'},
+        {id:'Asia/Istanbul',label:'Istanbul',region:'Asia'},
+        {id:'Africa/Nairobi',label:'Nairobi',region:'Africa'},
+        {id:'Asia/Riyadh',label:'Riyadh',region:'Asia'},
+        {id:'Asia/Baghdad',label:'Baghdad',region:'Asia'},
+        {id:'Asia/Tehran',label:'Tehran',region:'Asia'},
+        {id:'Asia/Dubai',label:'Dubai',region:'Asia'},
+        {id:'Asia/Baku',label:'Baku',region:'Asia'},
+        {id:'Asia/Tbilisi',label:'Tbilisi',region:'Asia'},
+        {id:'Asia/Kabul',label:'Kabul',region:'Asia'},
+        {id:'Asia/Karachi',label:'Karachi',region:'Asia'},
+        {id:'Asia/Tashkent',label:'Tashkent',region:'Asia'},
+        {id:'Asia/Kolkata',label:'Mumbai / Kolkata',region:'Asia'},
+        {id:'Asia/Colombo',label:'Colombo',region:'Asia'},
+        {id:'Asia/Kathmandu',label:'Kathmandu',region:'Asia'},
+        {id:'Asia/Dhaka',label:'Dhaka',region:'Asia'},
+        {id:'Asia/Almaty',label:'Almaty',region:'Asia'},
+        {id:'Asia/Yangon',label:'Yangon',region:'Asia'},
+        {id:'Asia/Bangkok',label:'Bangkok',region:'Asia'},
+        {id:'Asia/Jakarta',label:'Jakarta',region:'Asia'},
+        {id:'Asia/Ho_Chi_Minh',label:'Ho Chi Minh City',region:'Asia'},
+        {id:'Asia/Shanghai',label:'Beijing / Shanghai',region:'Asia'},
+        {id:'Asia/Singapore',label:'Singapore',region:'Asia'},
+        {id:'Australia/Perth',label:'Perth',region:'Australia'},
+        {id:'Asia/Hong_Kong',label:'Hong Kong',region:'Asia'},
+        {id:'Asia/Taipei',label:'Taipei',region:'Asia'},
+        {id:'Australia/Eucla',label:'Eucla',region:'Australia'},
+        {id:'Asia/Tokyo',label:'Tokyo',region:'Asia'},
+        {id:'Asia/Seoul',label:'Seoul',region:'Asia'},
+        {id:'Australia/Darwin',label:'Darwin',region:'Australia'},
+        {id:'Australia/Adelaide',label:'Adelaide',region:'Australia'},
+        {id:'Australia/Sydney',label:'Sydney',region:'Australia'},
+        {id:'Australia/Melbourne',label:'Melbourne',region:'Australia'},
+        {id:'Australia/Brisbane',label:'Brisbane',region:'Australia'},
+        {id:'Pacific/Guam',label:'Guam',region:'Pacific'},
+        {id:'Australia/Lord_Howe',label:'Lord Howe Island',region:'Pacific'},
+        {id:'Pacific/Guadalcanal',label:'Solomon Islands',region:'Pacific'},
+        {id:'Pacific/Noumea',label:'Noumea',region:'Pacific'},
+        {id:'Pacific/Auckland',label:'Auckland',region:'Pacific'},
+        {id:'Pacific/Fiji',label:'Fiji',region:'Pacific'},
+        {id:'Pacific/Chatham',label:'Chatham Islands',region:'Pacific'},
+        {id:'Pacific/Tongatapu',label:'Tonga',region:'Pacific'},
+        {id:'Pacific/Apia',label:'Apia',region:'Pacific'},
+        {id:'Pacific/Kiritimati',label:'Kiritimati',region:'Pacific'},
+      ]
+
+      // ── Helpers ───────────────────────────────────────────
+      var userTz = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+      function getCurrentOffsetMinutes(tzId) {
+        try {
+          var parts = new Intl.DateTimeFormat('en', {
+            timeZone: tzId, timeZoneName: 'shortOffset'
+          }).formatToParts(new Date())
+          var tz = (parts.find(function(p){return p.type==='timeZoneName'})||{}).value || 'GMT+0'
+          var m = tz.match(/GMT([+-])(\d+)(?::(\d+))?/)
+          if (!m) return 0
+          var sign = m[1]==='+' ? 1 : -1
+          return sign * (parseInt(m[2])*60 + parseInt(m[3]||'0'))
+        } catch(e) { return 0 }
+      }
+
+      function formatTimeInTz(tzId) {
+        return new Intl.DateTimeFormat('en', {
+          timeZone: tzId, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+        }).format(new Date())
+      }
+
+      function formatTimeForOffsetMinutes(mins) {
+        var now = new Date()
+        var utcMs = now.getTime() + now.getTimezoneOffset()*60000
+        var d = new Date(utcMs + mins*60000)
+        return String(d.getUTCHours()).padStart(2,'0') + ':' + String(d.getUTCMinutes()).padStart(2,'0')
+      }
+
+      function formatOffsetLabel(mins) {
+        var h = mins / 60
+        var sign = h >= 0 ? '+' : '-'
+        var absH = Math.abs(h)
+        var whole = Math.floor(absH)
+        var frac = Math.round((absH - whole) * 60)
+        return 'UTC' + sign + (frac > 0 ? whole + ':' + String(frac).padStart(2,'0') : whole)
+      }
+
+      function getRelativeLabel(offsetMins) {
+        var userOff = getCurrentOffsetMinutes(userTz)
+        var diff = offsetMins - userOff
+        if (diff === 0) return 'same as you'
+        var abs = Math.abs(diff)
+        var h = Math.floor(abs/60)
+        var m = abs % 60
+        var sign = diff > 0 ? '+' : '-'
+        return sign + (m > 0 ? h + 'h ' + m + 'm' : h + 'h')
+      }
+
+      function getTimezonesAtBandOffset(bandOffsetHours) {
+        return TZ_DATA.filter(function(tz) {
+          return Math.round(getCurrentOffsetMinutes(tz.id) / 60) === bandOffsetHours
+        })
+      }
+
+      function searchTz(query) {
+        var q = query.trim().toLowerCase()
+        if (!q) return TZ_DATA
+        return TZ_DATA.filter(function(tz) {
+          return tz.label.toLowerCase().includes(q) ||
+                 tz.id.toLowerCase().includes(q) ||
+                 tz.region.toLowerCase().includes(q)
+        })
+      }
+
+      function renderTzList(tzs, container, emptyMsg) {
+        if (tzs.length === 0) {
+          container.innerHTML = '<p class="tz-empty">' + (emptyMsg || 'No timezones found') + '</p>'
+          return
+        }
+        container.innerHTML = tzs.map(function(tz) {
+          var offMins = getCurrentOffsetMinutes(tz.id)
+          var time = formatTimeInTz(tz.id)
+          var rel = getRelativeLabel(offMins)
+          var offLabel = formatOffsetLabel(offMins)
+          return '<div class="tz-item">' +
+            '<div class="tz-item-left">' +
+              '<span class="tz-city">' + tz.label + '</span>' +
+              '<span class="tz-id">' + tz.id + '</span>' +
+            '</div>' +
+            '<div class="tz-item-right">' +
+              '<span class="tz-time" data-tzid="' + tz.id + '">' + time + '</span>' +
+              '<span class="tz-rel">' + rel + ' · ' + offLabel + '</span>' +
+            '</div>' +
+          '</div>'
+        }).join('')
+      }
+
+      // ── DOM refs ─────────────────────────────────────────
+      var userTzName = document.getElementById('user-tz-name')
+      var userClock = document.getElementById('user-clock')
+      var bands = document.querySelectorAll('.tz-band')
+      var tooltip = document.getElementById('map-tooltip')
+      var tooltipTime = document.getElementById('tooltip-time')
+      var tooltipLabel = document.getElementById('tooltip-label')
+      var mapWrapper = document.getElementById('map-wrapper')
+      var tzList = document.getElementById('tz-list')
+      var tzListTitle = document.getElementById('tz-list-title')
+      var mapSection = document.getElementById('map-section')
+      var searchSection = document.getElementById('search-section')
+      var searchInput = document.getElementById('search-input')
+      var searchList = document.getElementById('search-list')
+      var searchListTitle = document.getElementById('search-list-title')
+      var btnMap = document.getElementById('btn-map')
+      var btnSearch = document.getElementById('btn-search')
+      var themeToggle = document.getElementById('theme-toggle')
+
+      // ── User timezone display ─────────────────────────────
+      userTzName.textContent = userTz + ' (' + formatOffsetLabel(getCurrentOffsetMinutes(userTz)) + ')'
+
+      // ── Highlight user's band ─────────────────────────────
+      var userBandOff = Math.round(getCurrentOffsetMinutes(userTz) / 60)
+      bands.forEach(function(band) {
+        if (parseInt(band.dataset.offset) === userBandOff) {
+          band.classList.add('user-band')
+        }
+      })
+
+      // ── Map band hover ────────────────────────────────────
+      var activeBand = null
+
+      function showBandInfo(band) {
+        if (activeBand) activeBand.classList.remove('active-band')
+        activeBand = band
+        band.classList.add('active-band')
+
+        var offset = parseInt(band.getAttribute('data-offset'))
+        var offsetMins = offset * 60
+        var time = formatTimeForOffsetMinutes(offsetMins)
+        var sign = offset >= 0 ? '+' : ''
+        var label = 'UTC' + sign + offset
+
+        // Position tooltip
+        var svgEl = band.closest('svg')
+        var svgRect = svgEl.getBoundingClientRect()
+        var wrapRect = mapWrapper.getBoundingClientRect()
+        var bandX = parseFloat(band.getAttribute('x'))
+        var bandW = parseFloat(band.getAttribute('width'))
+        var scaleX = svgRect.width / 960
+        var centerX = (bandX + bandW / 2) * scaleX
+        var relX = svgRect.left - wrapRect.left + centerX
+
+        tooltip.style.display = 'block'
+        tooltip.style.left = relX + 'px'
+        tooltipTime.textContent = time
+        tooltipLabel.textContent = label
+
+        // Timezone list
+        var tzs = getTimezonesAtBandOffset(offset)
+        tzListTitle.textContent = label + ' — ' + tzs.length + ' timezone' + (tzs.length !== 1 ? 's' : '')
+        renderTzList(tzs, tzList, 'No cities found for this offset')
+      }
+
+      function hideBandInfo() {
+        tooltip.style.display = 'none'
+        if (activeBand) {
+          activeBand.classList.remove('active-band')
+          activeBand = null
+        }
+      }
+
+      bands.forEach(function(band) {
+        band.addEventListener('mouseenter', function() { showBandInfo(band) })
+        band.addEventListener('mouseleave', hideBandInfo)
+        band.addEventListener('focus', function() { showBandInfo(band) })
+        band.addEventListener('blur', hideBandInfo)
+        // Touch support
+        band.addEventListener('click', function() {
+          if (activeBand === band) { hideBandInfo(); return }
+          showBandInfo(band)
+        })
+      })
+
+      // ── Mode toggle ───────────────────────────────────────
+      function setMode(mode) {
+        if (mode === 'map') {
+          mapSection.classList.remove('hidden')
+          searchSection.classList.remove('active')
+          btnMap.classList.add('active')
+          btnSearch.classList.remove('active')
+        } else {
+          mapSection.classList.add('hidden')
+          searchSection.classList.add('active')
+          btnMap.classList.remove('active')
+          btnSearch.classList.add('active')
+          searchInput.focus()
+          renderSearchResults(searchInput.value)
+        }
+      }
+
+      btnMap.addEventListener('click', function() { setMode('map') })
+      btnSearch.addEventListener('click', function() { setMode('search') })
+
+      // ── Search ────────────────────────────────────────────
+      var searchDebounce = null
+
+      function renderSearchResults(query) {
+        var results = searchTz(query)
+        var title = query.trim()
+          ? results.length + ' result' + (results.length !== 1 ? 's' : '') + ' for "' + query + '"'
+          : 'All timezones (' + TZ_DATA.length + ')'
+        searchListTitle.textContent = title
+        renderTzList(results, searchList, 'No timezones found for "' + query + '"')
+      }
+
+      searchInput.addEventListener('input', function() {
+        clearTimeout(searchDebounce)
+        var q = searchInput.value
+        searchDebounce = setTimeout(function() { renderSearchResults(q) }, 150)
+      })
+
+      // ── Live clock (updates every second) ─────────────────
+      function tick() {
+        userClock.textContent = formatTimeInTz(userTz)
+
+        // Update all visible time cells in lists
+        document.querySelectorAll('.tz-time[data-tzid]').forEach(function(el) {
+          el.textContent = formatTimeInTz(el.dataset.tzid)
+        })
+
+        // Update map tooltip if showing
+        if (tooltip.style.display !== 'none' && activeBand) {
+          var offset = parseInt(activeBand.getAttribute('data-offset'))
+          tooltipTime.textContent = formatTimeForOffsetMinutes(offset * 60)
+        }
+      }
+
+      tick()
+      setInterval(tick, 1000)
+
+      // ── Theme toggle ──────────────────────────────────────
+      themeToggle.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme')
+        var next = current === 'dark' ? 'light' : 'dark'
+        document.documentElement.setAttribute('data-theme', next)
+        localStorage.setItem('resume-theme', next)
+      })
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('resume-theme')) {
+          document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light')
+        }
+      })
+    })()
+    </script>
+  </body>
+</html>

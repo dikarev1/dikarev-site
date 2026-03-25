@@ -1,0 +1,38 @@
+---
+---
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+  <span class="icon-moon">🌙</span>
+  <span class="icon-sun">☀️</span>
+  <span class="toggle-label">
+    <span class="label-dark">Dark</span>
+    <span class="label-light">Light</span>
+  </span>
+</button>
+
+<style>
+  .label-dark,
+  .label-light {
+    font-size: 0.72rem;
+  }
+
+  :root:not([data-theme="dark"]) .label-dark { display: none; }
+  [data-theme="dark"] .label-light { display: none; }
+</style>
+
+<script>
+  const toggle = document.getElementById('theme-toggle')
+
+  toggle?.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme')
+    const next = current === 'dark' ? 'light' : 'dark'
+    document.documentElement.setAttribute('data-theme', next)
+    localStorage.setItem('resume-theme', next)
+  })
+
+  // React to OS preference changes only if user hasn't manually picked a theme
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('resume-theme')) {
+      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light')
+    }
+  })
+</script>
