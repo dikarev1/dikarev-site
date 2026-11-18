@@ -227,3 +227,17 @@ html, body { overflow-x: clip; }
 .trace .trace-title { justify-content: flex-end; }
 
 .trace .contacts-label { text-align: left; }
+
+/* Блог: фото и текст о себе над списком постов */
+.blog-hero { display: flex; align-items: flex-end; gap: 32px; margin: 48px 0 8px; }
+.blog-hero .portrait { width: 220px; height: auto; flex-shrink: 0; border-radius: 4px; }
+.blog-hero p { margin: 0; }
+.blog-hero .hero-name { font-family: var(--font-ui); font-size: 15px; color: var(--muted); }
+.blog-hero .hero-lead { font-size: 1.2rem; line-height: 1.55; margin-top: 8px; }
+.blog-hero .hero-label { font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 20px; }
+.blog-hero .hero-about { font-size: 1.05rem; margin-top: 4px; }
+.blog .blog-title { margin-top: 56px; }
+@media (max-width: 600px) {
+  .blog-hero { flex-direction: column; align-items: flex-start; gap: 18px; margin-top: 28px; }
+  .blog-hero .portrait { width: 100%; max-width: 360px; }
+}

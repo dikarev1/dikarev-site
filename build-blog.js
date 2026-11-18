@@ -261,7 +261,16 @@ ${pager}`;
   fs.writeFileSync(path.join(OUT_DIR, 'index.html'), layout({
     title: SITE.blogTitle,
     description: `${SITE.blogTitle} — ${SITE.author}`,
-    body: `<h1>${esc(SITE.blogTitle)}</h1>\n${list}`,
+    body: `<section class="blog-hero">
+  <img class="portrait" src="/images/pasha.jpg" alt="Паша Дикарёв" width="800" height="842">
+  <div>
+    <p class="hero-name">Паша Дикарёв</p>
+    <p class="hero-lead">Привет, это дубль моего блога, который я веду в Телеграм по адресу <a href="https://t.me/dikarempasha" target="_blank" rel="noopener">t.me/dikarempasha</a></p>
+    <p class="hero-label">Обо мне вне работы</p>
+    <p class="hero-about">32 года, фотографирую, хорошо играю в падел, обожаю истории.</p>
+  </div>
+</section>
+<h1 class="blog-title">${esc(SITE.blogTitle)}</h1>\n${list}`,
     canonical: `${SITE.url}/blog/`,
   }));
 
