@@ -221,3 +221,7 @@ html, body { overflow-x: clip; }
   .trace .nav-block .sections { grid-template-columns: 1fr; row-gap: 18px; }
   .trace .nav-block .sections a small { white-space: normal; }
 }
+
+/* Фото и подпись прижаты к правому краю блока контактов */
+.avatar-small { margin: 8px 0 0 auto; }
+.trace .trace-title { justify-content: flex-end; }
