@@ -251,3 +251,5 @@ html, body { overflow-x: clip; }
 .page-photo.narrow { max-width: 340px; }
 .photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0 8px; }
 .photo-pair .page-photo { margin: 0; }
+.media-links { font-family: var(--font-ui); font-size: 15px; }
+.media-links { color: var(--muted); }
