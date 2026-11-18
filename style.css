@@ -191,3 +191,13 @@ time { display: block; font-family: var(--font-ui); font-size: 14px; color: var(
 /* Шапка по центру */
 .site-header { justify-content: center; }
 .site-header nav { min-width: 0; }
+
+/* Навигация на главной: 4 колонки с подписями */
+.trace .sections { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center; }
+.trace .sections a b { display: block; font-weight: 500; }
+.trace .sections a small { display: block; margin-top: 4px; font-size: 12.5px; line-height: 1.35; color: var(--muted); }
+.trace .sections a:hover { text-decoration: none; }
+.trace .sections a:hover b { text-decoration: underline; }
+@media (max-width: 480px) {
+  .trace .sections { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
+}
