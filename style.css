@@ -150,3 +150,28 @@ time { display: block; font-family: var(--font-ui); font-size: 14px; color: var(
   .site-header nav { flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; gap: 10px; font-size: 13px; scrollbar-width: none; }
   .site-header nav::-webkit-scrollbar { display: none; }
 }
+
+/* Главная: «Цифровой след Паши» */
+.home-page { min-height: 100vh; display: flex; flex-direction: column; }
+.trace { flex: 1; width: 100%; max-width: 460px; margin: 0 auto; padding: 72px 20px 0; text-align: center; }
+.emblem { position: relative; width: 220px; height: 190px; margin: 0 auto; }
+.emblem .avatar { position: absolute; left: 0; top: 10px; width: 160px; height: 160px; border-radius: 50%; object-fit: cover; }
+.emblem .hand { position: absolute; right: 0; bottom: 0; width: 120px; height: 120px; opacity: .92; filter: drop-shadow(0 1px 0 var(--bg)); }
+.trace h1 { font-family: var(--font-body); font-size: 1.9rem; font-weight: 600; letter-spacing: -0.01em; margin: 24px 0 0; }
+
+.contacts { list-style: none; padding: 0; margin: 40px 0 0; font-family: var(--font-ui); font-size: 15px; }
+.contacts li { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.contacts li:first-child { border-top: 1px solid var(--border); }
+.contacts span { color: var(--muted); }
+.contacts a { color: var(--text); text-decoration: none; }
+.contacts a:hover { color: var(--accent); }
+
+.sections { display: flex; justify-content: space-between; margin-top: 36px; font-family: var(--font-ui); font-size: 15px; }
+.sections a { color: var(--accent); text-decoration: none; }
+.sections a:hover { text-decoration: underline; }
+
+.home-page .site-footer { text-align: center; margin-top: 64px; }
+@media (max-width: 340px) {
+  .contacts li { flex-direction: column; gap: 2px; text-align: left; }
+  .sections { font-size: 14px; }
+}
