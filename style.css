@@ -104,3 +104,49 @@ time { display: block; font-family: var(--font-ui); font-size: 14px; color: var(
 @media (max-width: 600px) {
   .site-header nav { gap: 14px; font-size: 14px; }
 }
+
+/* Логотип: тихо, без акцента */
+.site-header { display: flex; align-items: center; gap: 20px; }
+.site-header .logo { display: flex; flex-shrink: 0; }
+.site-header .logo img { width: 22px; height: 22px; opacity: .5; transition: opacity .2s; }
+.site-header .logo:hover img { opacity: .9; }
+.footer-logo { width: 16px; height: 16px; opacity: .45; vertical-align: -3px; margin-right: 4px; }
+
+/* Главная в духе Linktree */
+.links-page { max-width: 560px; margin: 0 auto; padding: 0 20px; text-align: center; }
+.profile { margin-top: 40px; }
+.profile .avatar { width: 132px; height: 132px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto; }
+.profile h1 { font-family: var(--font-ui); font-size: 15px; font-weight: 500; color: var(--muted); margin: 16px 0 0; }
+.profile .bio { font-size: 1.2rem; line-height: 1.55; margin: 10px 0 0; }
+.profile .about { font-size: 1.02rem; color: var(--text); margin: 12px 0 0; }
+.profile .about span { color: var(--muted); }
+
+.link-group { margin-top: 44px; }
+.links-page h2 { font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+.link-btn { display: block; padding: 14px 20px; margin-top: 10px; border: 1px solid var(--border); border-radius: 14px; background: var(--bg); color: var(--text); text-decoration: none; transition: border-color .15s, transform .15s, background .15s; }
+.link-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+.link-btn b { display: block; font-family: var(--font-ui); font-size: 16px; font-weight: 600; }
+.link-btn small { display: block; font-family: var(--font-ui); font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+.latest { margin-top: 56px; text-align: left; }
+.latest h2 { text-align: center; }
+.latest .post-list { margin-top: 4px; }
+.latest .post-list li { padding: 28px 0; }
+.latest .post-list a { font-size: 1.7rem; line-height: 1.25; font-weight: 600; color: var(--text); text-decoration: none; }
+.latest .post-list a:hover { color: var(--accent); }
+.latest .post-list p { font-size: 1.05rem; margin-top: 10px; }
+.latest .all-posts { text-align: center; font-family: var(--font-ui); font-size: 15px; }
+.links-page .mark { display: block; width: 40px; height: 40px; margin: 48px auto 0; opacity: .3; }
+@media (max-width: 600px) {
+  .latest .post-list a { font-size: 1.4rem; }
+  .site-header { gap: 14px; }
+}
+@media (max-width: 600px) {
+  .site-header { gap: 10px; }
+  .site-header nav { gap: 11px; font-size: 13.5px; }
+  .site-header .logo img { width: 18px; height: 18px; }
+}
+@media (max-width: 600px) {
+  .site-header nav { flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; gap: 10px; font-size: 13px; scrollbar-width: none; }
+  .site-header nav::-webkit-scrollbar { display: none; }
+}

@@ -175,14 +175,16 @@ function layout({ title, description, body, canonical }) {
 <meta property="og:url" content="${canonical}">
 <link rel="canonical" href="${canonical}">
 <link rel="alternate" type="application/rss+xml" title="${esc(SITE.blogTitle)}" href="/blog/feed.xml">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<header class="site-header"><nav>${nav}</nav></header>
+<header class="site-header"><a class="logo" href="/" aria-label="На главную"><img src="/logo.png" alt="" width="22" height="22"></a><nav>${nav}</nav></header>
 <main class="blog">
 ${body}
 </main>
-<footer class="site-footer">© ${new Date().getFullYear()} ${esc(SITE.author)} · <a href="/blog/feed.xml">RSS</a></footer>
+<footer class="site-footer"><img class="footer-logo" src="/logo.png" alt="" width="16" height="16"> © ${new Date().getFullYear()} ${esc(SITE.author)} · <a href="/blog/feed.xml">RSS</a></footer>
 </body>
 </html>
 `;
