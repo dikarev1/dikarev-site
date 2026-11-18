@@ -25,7 +25,7 @@ const SITE = {
   author: 'Паша Дикарёв',
   lang: 'ru',
   // Юзернейм Telegram-канала без @ — для ссылок «Оригинал в Telegram» у импортированных постов
-  telegram: '',
+  telegram: 'dikarempasha',
   // Ссылки в шапке блога — поменяй под свой сайт
   nav: [
     { href: '/', label: 'Главная' },
