@@ -270,7 +270,7 @@ ${pager}`;
     <p class="hero-name">Паша Дикарёв</p>
     <p class="hero-lead">Привет, это дубль моего блога, который я веду в Телеграм по адресу <a href="https://t.me/dikarempasha" target="_blank" rel="noopener">t.me/dikarempasha</a></p>
     <p class="hero-label">Обо мне вне работы</p>
-    <p class="hero-about">32 года, фотографирую, хорошо играю в падел, люблю организовывать турниры, обожаю истории.</p>
+    <p class="hero-about">32 года, фотографирую, хорошо играю в падел, обожаю истории.</p>
   </div>
 </section>
 <h1 class="blog-title">${esc(SITE.blogTitle)}</h1>\n${list}`,
