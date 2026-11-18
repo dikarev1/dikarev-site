@@ -40,8 +40,8 @@ time { display: block; font-family: var(--font-ui); font-size: 14px; color: var(
 }
 .home h2 { font-family: var(--font-ui); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0; }
 .home .post-list { margin-top: 12px; }
-.home .about { margin-bottom: 56px; }
-.home .about p { margin: 12px 0 0; font-size: 1.15rem; }
+.home .about { margin-top: 24px; }
+.home .about p { margin: 6px 0 0; font-size: 1.05rem; }
 
 /* Список постов */
 .post-list { list-style: none; padding: 0; margin: 32px 0 0; }
