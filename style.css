@@ -182,3 +182,8 @@ time { display: block; font-family: var(--font-ui); font-size: 14px; color: var(
 .avatar-small { display: block; width: 72px; height: 72px; border-radius: 50%; object-fit: cover; margin: 8px auto 0; }
 .trace .trace-title { font-family: var(--font-ui); font-size: 15px; font-weight: 400; color: var(--muted); letter-spacing: 0.02em; margin: 14px 0 0; display: flex; align-items: center; justify-content: center; gap: 6px; }
 .hand-inline { width: 30px; height: 30px; opacity: .8; }
+
+/* Подписи блоков на главной */
+.trace .block-label { font-family: var(--font-ui); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: left; margin: 40px 0 8px; }
+.trace .block-label + .contacts { margin-top: 0; }
+.trace .block-label + .sections { margin-top: 0; }
