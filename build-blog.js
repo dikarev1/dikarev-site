@@ -162,7 +162,10 @@ function markdown(src) {
 
 // ---------- Шаблоны ----------
 function layout({ title, description, body, canonical }) {
-  const nav = SITE.nav.map((n) => `<a href="${n.href}"${n.href === '/blog/' ? ' class="active"' : ''}>${esc(n.label)}</a>`).join('');
+  const nav = SITE.nav.map((n) => {
+    const a = `<a href="${n.href}"${n.href === '/blog/' ? ' class="active"' : ''}>${esc(n.label)}</a>`;
+    return n.href === '/padel/' ? `<span class="nav-drop">${a}<span class="drop"><a href="/padel/etiquette/">Этикет падела</a><a href="/padel/tournament/">Впечатления от победного турнира</a><a href="/padel/#padel-utopia">Padel Utopia</a></span></span>` : a;
+  }).join('');
   return `<!DOCTYPE html>
 <html lang="${SITE.lang}">
 <head>
