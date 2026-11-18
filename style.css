@@ -32,14 +32,18 @@ time { display: block; font-family: var(--font-ui); font-size: 14px; color: var(
 /* Главная */
 .hero { display: flex; align-items: flex-end; gap: 32px; margin: 56px 0 56px; }
 .hero .portrait { width: 240px; height: auto; flex-shrink: 0; border-radius: 4px; }
-.home h1 { font-size: 2.6rem; margin: 0; }
-.home .lead { font-size: 1.25rem; color: var(--muted); margin: 8px 0 0; }
+.home h1 { font-family: var(--font-ui); font-size: 1rem; font-weight: 400; color: var(--muted); letter-spacing: 0; margin: 0; }
+.home .lead { font-size: 1.25rem; color: var(--text); margin: 8px 0 0; }
 @media (max-width: 600px) {
   .hero { flex-direction: column; align-items: flex-start; gap: 20px; margin-top: 32px; }
   .hero .portrait { width: 100%; max-width: 360px; }
 }
 .home h2 { font-family: var(--font-ui); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0; }
 .home .post-list { margin-top: 12px; }
+.home .post-list li { padding: 32px 0; }
+.home .post-list a { font-size: 1.9rem; line-height: 1.25; letter-spacing: -0.01em; }
+.home .post-list time { margin-bottom: 6px; }
+.home .post-list p { font-size: 1.1rem; margin-top: 10px; }
 .home .about { margin-top: 24px; }
 .home .about p { margin: 6px 0 0; font-size: 1.05rem; }
 
@@ -72,3 +76,7 @@ time { display: block; font-family: var(--font-ui); font-size: 14px; color: var(
 .pager .next { text-align: right; }
 
 @media (max-width: 600px) { body { font-size: 17px; } .blog h1 { font-size: 1.8rem; } }
+@media (max-width: 600px) {
+  .home h1 { font-size: 1rem; }
+  .home .post-list a { font-size: 1.5rem; }
+}
