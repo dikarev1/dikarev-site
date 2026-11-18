@@ -210,3 +210,14 @@ html, body { overflow-x: clip; }
 /* Главная: основной блок по центру по вертикали */
 .trace { display: flex; flex-direction: column; justify-content: center; padding-top: 32px; padding-bottom: 32px; }
 .home-page .site-footer { margin-top: 0; }
+
+/* Навигация на главной: шире основного блока, подписи в одну строку */
+.trace .block-label { text-align: center; }
+.nav-block { width: min(880px, calc(100vw - 40px)); margin-left: 50%; transform: translateX(-50%); }
+.trace .nav-block .sections { grid-template-columns: repeat(4, auto); justify-content: space-between; gap: 24px; }
+.trace .nav-block .sections a small { white-space: nowrap; font-size: 13px; }
+@media (max-width: 760px) {
+  .nav-block { width: 100%; margin-left: 0; transform: none; }
+  .trace .nav-block .sections { grid-template-columns: 1fr; row-gap: 18px; }
+  .trace .nav-block .sections a small { white-space: normal; }
+}
