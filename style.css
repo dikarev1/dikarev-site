@@ -80,3 +80,27 @@ time { display: block; font-family: var(--font-ui); font-size: 14px; color: var(
   .home h1 { font-size: 1rem; }
   .home .post-list a { font-size: 1.5rem; }
 }
+
+/* Меню */
+.site-header nav { flex-wrap: wrap; row-gap: 6px; }
+.site-header a.active { color: var(--accent); }
+
+/* Обычные страницы */
+.page h2 { font-size: 1.4rem; margin: 48px 0 8px; }
+.page .lead { font-size: 1.2rem; color: var(--muted); margin: 8px 0 32px; }
+
+/* Галерея */
+.series { margin-top: 48px; }
+.series h2 { margin: 0; }
+.series h2 span { font-family: var(--font-ui); font-size: 14px; font-weight: 400; color: var(--muted); }
+.series-link { margin: 4px 0 0; font-family: var(--font-ui); font-size: 14px; }
+.gallery { columns: 3 200px; column-gap: 10px; margin-top: 16px; }
+.gallery a { display: block; margin-bottom: 10px; break-inside: avoid; }
+.gallery img { display: block; width: 100%; height: auto; border-radius: 4px; transition: opacity .2s; }
+.gallery a:hover img { opacity: .85; }
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.92); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: zoom-out; }
+.lightbox[hidden] { display: none; }
+.lightbox img { max-width: 94vw; max-height: 94vh; }
+@media (max-width: 600px) {
+  .site-header nav { gap: 14px; font-size: 14px; }
+}

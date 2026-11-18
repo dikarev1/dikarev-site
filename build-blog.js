@@ -30,6 +30,9 @@ const SITE = {
   nav: [
     { href: '/', label: 'Главная' },
     { href: '/blog/', label: 'Блог' },
+    { href: '/photos/', label: 'Фотографии' },
+    { href: '/padel/', label: 'Падел' },
+    { href: '/career/', label: 'Карьера' },
   ],
 };
 
@@ -159,7 +162,7 @@ function markdown(src) {
 
 // ---------- Шаблоны ----------
 function layout({ title, description, body, canonical }) {
-  const nav = SITE.nav.map((n) => `<a href="${n.href}">${esc(n.label)}</a>`).join('');
+  const nav = SITE.nav.map((n) => `<a href="${n.href}"${n.href === '/blog/' ? ' class="active"' : ''}>${esc(n.label)}</a>`).join('');
   return `<!DOCTYPE html>
 <html lang="${SITE.lang}">
 <head>
