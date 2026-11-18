@@ -225,3 +225,5 @@ html, body { overflow-x: clip; }
 /* Фото и подпись прижаты к правому краю блока контактов */
 .avatar-small { margin: 8px 0 0 auto; }
 .trace .trace-title { justify-content: flex-end; }
+
+.trace .contacts-label { text-align: left; }
