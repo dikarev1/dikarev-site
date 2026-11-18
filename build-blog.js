@@ -187,7 +187,7 @@ function layout({ title, description, body, canonical }) {
 <main class="blog">
 ${body}
 </main>
-<footer class="site-footer"><img class="footer-logo" src="/logo.png" alt="" width="16" height="16"> © ${new Date().getFullYear()} ${esc(SITE.author)} · <a href="/blog/feed.xml">RSS</a></footer>
+<footer class="site-footer"><img class="footer-logo" src="/logo.png" alt="" width="16" height="16"> © ${new Date().getFullYear()} ${esc(SITE.author)}</footer>
 </body>
 </html>
 `;
