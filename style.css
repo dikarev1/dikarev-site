@@ -153,7 +153,7 @@ time { display: block; font-family: var(--font-ui); font-size: 14px; color: var(
 
 /* Главная: «Цифровой след Паши» */
 .home-page { min-height: 100vh; display: flex; flex-direction: column; }
-.trace { flex: 1; width: 100%; max-width: 460px; margin: 0 auto; padding: 72px 20px 0; text-align: center; }
+.trace { flex: 1; width: 100%; max-width: 460px; margin: 0 auto; padding: 40px 20px 0; text-align: center; }
 .emblem { position: relative; width: 220px; height: 190px; margin: 0 auto; }
 .emblem .avatar { position: absolute; left: 0; top: 10px; width: 160px; height: 160px; border-radius: 50%; object-fit: cover; }
 .emblem .hand { position: absolute; right: 0; bottom: 0; width: 120px; height: 120px; opacity: .92; filter: drop-shadow(0 1px 0 var(--bg)); }
@@ -175,3 +175,5 @@ time { display: block; font-family: var(--font-ui); font-size: 14px; color: var(
   .contacts li { flex-direction: column; gap: 2px; text-align: left; }
   .sections { font-size: 14px; }
 }
+
+.home-page .site-header { width: 100%; box-sizing: border-box; }
