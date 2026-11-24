@@ -181,6 +181,7 @@ function layout({ title, description, body, canonical }) {
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/style.css">
+<script defer src="/t.js"></script>
 </head>
 <body>
 <header class="site-header"><a class="logo" href="/" aria-label="На главную"><img src="/logo.png" alt="" width="22" height="22"></a><nav>${nav}</nav></header>

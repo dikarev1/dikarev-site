@@ -1,5 +1,6 @@
 {
   "framework": null,
   "outputDirectory": ".",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [{ "source": "/stats", "destination": "/api/stats" }]
 }
