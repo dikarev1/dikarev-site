@@ -178,7 +178,7 @@ function layout({ title, description, body, canonical }) {
 <meta property="og:url" content="${canonical}">
 <link rel="canonical" href="${canonical}">
 <link rel="alternate" type="application/rss+xml" title="${esc(SITE.blogTitle)}" href="/blog/feed.xml">
-<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/style.css">
 <script defer src="/t.js"></script>

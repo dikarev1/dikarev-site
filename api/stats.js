@@ -92,7 +92,7 @@ module.exports = async (req, res) => {
   res.status(200).send(`<!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex"><title>Статистика</title>
-<link rel="icon" type="image/png" href="/favicon.png"><link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" href="/favicon.png"><link rel="stylesheet" href="/style.css">
 <script>try{localStorage.setItem('notrack','1')}catch(e){}</script>
 <style>
 .stats{max-width:var(--width);margin:0 auto;padding:0 20px 60px;font-family:var(--font-ui);font-size:15px}
